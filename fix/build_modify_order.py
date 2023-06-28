@@ -36,7 +36,7 @@ class BuildModify(Application):
         message.setField(fix.OrigClOrdID(str(client_order_id)))
         message.setField(fix.OrderQty(float(base_quantity)))
         message.setField(fix.Price(float(limit_price)))
-        message.setField(fix.Side(fix.Side_BUY)) if side == side_buy else message.setField(fix.Side(fix.Side_SELL))
+        message.setField(fix.Side(fix.Side_BUY if side == side_buy else fix.Side_SELL))
 
         print(side)
         trstime = fix.TransactTime()
