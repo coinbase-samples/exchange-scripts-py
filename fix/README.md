@@ -1,6 +1,6 @@
 # Exchange FIX README.md
 
-This repository is a Python application for Coinbase's Exchange FIX API. The application is designed to
+This repository is a Python application for Coinbase's Exchange FIX API.
 # Getting started
 
 ## 1. Gaining access

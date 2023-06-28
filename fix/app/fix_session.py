@@ -41,10 +41,10 @@ class FixSession:
 
     def on_message(self, message):
         """Process Application messages here"""
-        if message.getHeader().getField(field_msgtype) == msgtype_execution_report and '20=0' in str(message):
+        if message.getHeader().getField(field_msgtype) == msgtype_execution_report and tag_new_order in str(message):
             self.get_exec_type(message)
         elif message.getHeader().getField(field_msgtype) == msgtype_reject:
-            if "58=" in str(message):
+            if tag_text in str(message):
                 reason = message.getField(field_text)
                 logfix.info('Message Rejected, Reason: {} '.format(reason))
             else:
@@ -56,31 +56,55 @@ class FixSession:
         """Util Function to parse Execution Reports"""
 
         exec_type = message.getField(field_exectype)
-        if "58=" in str(message):
+        if tag_text in str(message):
             reason = message.getField(field_text)
         else:
             reason = 'Not Returned'
         order_id = message.getField(field_orderid)
         symbol = message.getField(field_symbol)
 
-        if exec_type == exectype_new:
+        def handle_new_order():
             logfix.info('New Order - Order Not Filled')
-        elif exec_type == exectype_partial:
+
+        def handle_partial_fill():
             logfix.info('Order - Partial fill')
-        elif exec_type == exectype_fill:
+
+        def handle_full_fill():
             logfix.info('Order - Filled')
-        elif exec_type == exectype_done:
+
+        def handle_order_done(order_id):
             logfix.info('Order {} Done'.format(order_id))
-        elif exec_type == exectype_cancelled:
+
+        def handle_order_cancelled(order_id, reason):
             logfix.info('Order {} Cancelled, Reason: {}'.format(order_id, reason))
-        elif exec_type == exectype_stopped:
+
+        def handle_order_stopped(order_id, reason):
             logfix.info('Order {} Stopped, Reason: {}'.format(order_id, reason))
-        elif exec_type == exectype_rejected:
+
+        def handle_order_rejected(order_id, reason):
             logfix.info('Order {} Rejected, Reason: {}'.format(order_id, reason))
-        elif exec_type == exectype_restated:
+
+        def handle_order_restated(order_id, reason):
             logfix.info('Order {} Restated, Reason: {}'.format(order_id, reason))
-        elif exec_type == exectype_status:
+
+        def handle_order_status(order_id, message):
             logfix.info('Order Status for {} : {}'.format(order_id, format_message(message)))
+
+        handlers = {
+            exectype_new: handle_new_order,
+            exectype_partial: handle_partial_fill,
+            exectype_fill: handle_full_fill,
+            exectype_done: lambda: handle_order_done(order_id),
+            exectype_cancelled: lambda: handle_order_cancelled(order_id, reason),
+            exectype_stopped: lambda: handle_order_stopped(order_id, reason),
+            exectype_rejected: lambda: handle_order_rejected(order_id, reason),
+            exectype_restated: lambda: handle_order_restated(order_id, reason),
+            exectype_status: lambda: handle_order_status(order_id, message),
+        }
+
+        handler = handlers.get(exec_type)
+        if handler:
+            handler()
         else:
             return
 

@@ -25,7 +25,7 @@ class BuildGet(Application):
         product = os.environ.get('FIX_PRODUCT_ID')
 
         message = self.create_header(fixSession.portfolio_id, fix.MsgType(fix.MsgType_OrderStatusRequest))
-        #message.setField(fix.OrderID(order_id))
+        message.setField(fix.OrderID(order_id))
         message.setField(fix.ClOrdID(str(client_order_id)))
         message.setField(fix.Symbol(str(product)))
 

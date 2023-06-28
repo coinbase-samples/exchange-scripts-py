@@ -62,3 +62,6 @@ side_sell = '2'
 type_market = 'MARKET'
 type_limit = 'LIMIT'
 type_twap = 'TWAP'
+
+tag_new_order = '20=0'
+tag_text = '58='

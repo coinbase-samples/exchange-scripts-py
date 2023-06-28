@@ -49,4 +49,3 @@ class BuildModify(Application):
         trstime.setString(str(time.time()))
         message.setField(trstime)
         fixSession.send_message(message)
-
