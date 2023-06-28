@@ -35,7 +35,7 @@ export TARGET_COMP_ID=COIN
 
 ## 3. Running scripts
 
-A detailed README.md file is provided inside the fix repository. For REST, scripts are entirely standalone and do not require any main application to access. You can run them simply by running a command like the following:
+A detailed [README.md](https://github.com/coinbase-samples/exchange-scripts-py/blob/jc-dev/fix/README.md) is provided inside the fix repository. For REST, scripts are entirely standalone and do not require any main application to access. You can run them simply by running a command like the following:
 ```
 python script_name_here.py
 ```
