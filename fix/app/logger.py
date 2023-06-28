@@ -15,7 +15,6 @@ import logging
 
 loggers = {}
 
-
 def setup_logger(logger_name, log_file, level=logging.INFO):
     global loggers
 
@@ -31,7 +30,6 @@ def setup_logger(logger_name, log_file, level=logging.INFO):
 
         loggers[logger_name] = lz
         return lz
-
 
 def format_message(message):
     msg = message.toString().replace('\u0001', '|')

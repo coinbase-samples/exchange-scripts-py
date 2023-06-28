@@ -28,7 +28,6 @@ from app.dictionary import *
 setup_logger('logfix', 'Logs/message.log')
 logfix = logging.getLogger('logfix')
 
-
 class FixSession:
     """FIX Session"""
     def __init__(self, session_id, portfolio_id):
@@ -50,7 +49,6 @@ class FixSession:
             else:
                 reason = 'Not Returned'
                 logfix.info('Message Rejected, Reason: {} '.format(reason))
-
 
     def get_exec_type(self, message):
         """Util Function to parse Execution Reports"""
@@ -107,7 +105,6 @@ class FixSession:
             handler()
         else:
             return
-
 
 class Application(fix.Application):
 
@@ -201,7 +198,7 @@ class Application(fix.Application):
         return
 
     def sign(self, t, msg_type, seq_num, api_key, target_comp_id, password):
-        message = '\x01'.join([t, msg_type, seq_num, api_key, target_comp_id, password]).encode("utf-8")
+        message = delimiter.join([t, msg_type, seq_num, api_key, target_comp_id, password]).encode("utf-8")
         hmac_key = base64.b64decode(self.API_SECRET)
         signature = hmac.new(hmac_key, message, hashlib.sha256)
         sign_b64 = base64.b64encode(signature.digest()).decode()

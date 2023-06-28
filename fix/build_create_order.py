@@ -15,7 +15,6 @@ import quickfix as fix
 from app.fix_session import Application
 from app.dictionary import type_market, type_limit, side_type_buy, side_type_sell
 
-
 class BuildCreate(Application):
 
     def create_order(self, fixSession):
@@ -37,10 +36,7 @@ class BuildCreate(Application):
             message.setField(126, "20230901-00:00:10.000")
             message.setField(847, 'L')
             message.setField(fix.Price(float(limit_price)))
-        if side == side_type_buy:
-            message.setField(fix.Side(fix.Side_BUY))
-        elif side == side_type_sell:
-            message.setField(fix.Side(fix.Side_SELL))
+        message.setField(fix.Side(fix.Side_BUY)) if side == side_type_buy else message.setField(fix.Side(fix.Side_SELL))
         message.setField(fix.OrderQty(float(base_quantity)))
 
         fixSession.send_message(message)

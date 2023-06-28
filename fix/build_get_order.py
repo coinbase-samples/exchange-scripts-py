@@ -15,7 +15,6 @@ import os
 import quickfix as fix
 from app.fix_session import Application
 
-
 class BuildGet(Application):
 
     def get_order(self,fixSession):
@@ -30,4 +29,3 @@ class BuildGet(Application):
         message.setField(fix.Symbol(str(product)))
 
         fixSession.send_message(message)
-

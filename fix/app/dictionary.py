@@ -65,3 +65,5 @@ type_twap = 'TWAP'
 
 tag_new_order = '20=0'
 tag_text = '58='
+
+delimiter = '\x01'

@@ -17,8 +17,6 @@ import time
 from app.fix_session import Application
 from app.dictionary import side_buy, side_sell
 
-
-
 class BuildModify(Application):
 
     def modify_order(self,fixSession):
@@ -31,7 +29,6 @@ class BuildModify(Application):
         base_quantity = '0.00011'  # updated order quantity
         limit_price = '55000'  # updated limit price
 
-
         message = self.create_header(fixSession.portfolio_id, fix.MsgType(fix.MsgType_OrderCancelReplaceRequest))
         message.setField(fix.Symbol(str(product)))
         message.setField(fix.OrdType(fix.OrdType_LIMIT))
@@ -39,10 +36,7 @@ class BuildModify(Application):
         message.setField(fix.OrigClOrdID(str(client_order_id)))
         message.setField(fix.OrderQty(float(base_quantity)))
         message.setField(fix.Price(float(limit_price)))
-        if side == side_buy:
-            message.setField(fix.Side(fix.Side_BUY))
-        elif side == side_sell:
-            message.setField(fix.Side(fix.Side_SELL))
+        message.setField(fix.Side(fix.Side_BUY)) if side == side_buy else message.setField(fix.Side(fix.Side_SELL))
 
         print(side)
         trstime = fix.TransactTime()

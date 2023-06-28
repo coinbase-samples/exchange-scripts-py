@@ -15,7 +15,6 @@ import quickfix
 from app.configuration import Configuration
 from build_modify_order import BuildModify
 
-
 def main():
     try:
         Configuration().build_config()
@@ -31,7 +30,6 @@ def main():
 
     except (quickfix.ConfigError, quickfix.RuntimeError) as exception:
         assert type(exception).__name__ == 'NameError'
-
 
 if __name__ == '__main__':
     main()

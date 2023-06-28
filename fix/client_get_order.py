@@ -15,7 +15,6 @@ import quickfix
 from app.configuration import Configuration
 from build_get_order import BuildGet
 
-
 def main():
     """Main"""
     try:
@@ -32,7 +31,6 @@ def main():
 
     except (quickfix.ConfigError, quickfix.RuntimeError) as exception:
         assert type(exception).__name__ == 'NameError'
-
 
 if __name__ == '__main__':
     main()

@@ -16,7 +16,6 @@ import quickfix as fix
 from app.fix_session import Application
 from app.dictionary import *
 
-
 class BuildCancel(Application):
 
     def cancel_order(self, fixSession):
@@ -30,9 +29,6 @@ class BuildCancel(Application):
         message.setField(fix.OrderID(str(order_id)))
         message.setField(fix.OrigClOrdID(str(client_order_id)))
         message.setField(fix.Symbol(str(product)))
-        if side == side_type_buy:
-            message.setField(fix.Side(fix.Side_BUY))
-        elif side == side_type_sell:
-            message.setField(fix.Side(fix.Side_SELL))
+        message.setField(fix.Side(fix.Side_BUY)) if side == side_type_buy else message.setField(fix.Side(fix.Side_SELL))
         message.setField(fix.OrderQty(float(base_quantity)))
         fixSession.send_message(message)

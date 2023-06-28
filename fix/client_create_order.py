@@ -18,7 +18,6 @@ from build_create_order import BuildCreate
 
 config = configparser.ConfigParser()
 
-
 def main():
     """Main"""
     try:
@@ -35,7 +34,6 @@ def main():
 
     except (quickfix.ConfigError, quickfix.RuntimeError) as exception:
         assert type(exception).__name__ == 'NameError'
-
 
 if __name__ == '__main__':
     main()
