@@ -50,3 +50,4 @@ response = requests.get(url, headers=headers)
 print(response.status_code)
 parse = json.loads(response.text)
 print(json.dumps(parse, indent=3))
+
