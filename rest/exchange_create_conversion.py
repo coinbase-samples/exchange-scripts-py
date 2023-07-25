@@ -18,18 +18,17 @@ from urllib.parse import urlparse
 API_KEY = str(os.environ.get('ACCESS_KEY'))
 PASSPHRASE = str(os.environ.get('PASSPHRASE'))
 SECRET_KEY = str(os.environ.get('SIGNING_KEY'))
+PROFILE_ID = str(os.environ.get('PROFILE_ID'))
 
-url = f'https://api.exchange.coinbase.com/conversions'
+url = 'https://api.exchange.coinbase.com/conversions'
 
 timestamp = str(int(time.time()))
 method = 'POST'
 
 url_path = urlparse(url).path
 
-profile_id = 'profile_id'
-
 payload = {
-   'profile_id': profile_id,
+   'profile_id': PROFILE_ID,
    'from': 'USD',
    'to': 'USDC',
    'amount': '1',

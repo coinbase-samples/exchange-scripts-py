@@ -15,9 +15,7 @@
 import json, requests, sys
 
 if len(sys.argv) != 2:
-    print("Error: One command-line argument is required.")
-    print("Usage: python exchange_get_product_trades.py <product_id>")
-    sys.exit(1)
+    exit('Usage: python exchange_get_product_trades.py <product_id>')
 
 product_id = sys.argv[1]
 

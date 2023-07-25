@@ -20,9 +20,7 @@ PASSPHRASE = str(os.environ.get('PASSPHRASE'))
 SECRET_KEY = str(os.environ.get('SIGNING_KEY'))
 
 if len(sys.argv) != 2:
-    print("Error: One command-line argument is required.")
-    print("Usage: python exchange_get_order_by_id.py <order_id>")
-    sys.exit(1)
+    exit('Usage: python exchange_get_order_by_id.py <order_id>')
 
 order_id = sys.argv[1]
 

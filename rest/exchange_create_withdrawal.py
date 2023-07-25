@@ -18,13 +18,13 @@ from urllib.parse import urlparse
 API_KEY = str(os.environ.get('ACCESS_KEY'))
 PASSPHRASE = str(os.environ.get('PASSPHRASE'))
 SECRET_KEY = str(os.environ.get('SIGNING_KEY'))
+PROFILE_ID = str(os.environ.get('PROFILE_ID'))
 
-url = f'https://api.exchange.coinbase.com/withdrawals/crypto'
+url = 'https://api.exchange.coinbase.com/withdrawals/crypto'
 
 timestamp = str(int(time.time()))
 method = 'POST'
 
-profile_id = 'profile_id'
 amount = '1'
 currency = 'USDC'
 crypto_address = 'crypto_address'
@@ -33,7 +33,7 @@ network = 'ETH'
 url_path = urlparse(url).path
 
 payload = {
-   'profile_id': profile_id,
+   'profile_id': PROFILE_ID,
    'amount': amount,
    'crypto_address': crypto_address,
    'currency': currency,

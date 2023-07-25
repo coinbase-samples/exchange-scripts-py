@@ -20,9 +20,7 @@ PASSPHRASE = str(os.environ.get('PASSPHRASE'))
 SECRET_KEY = str(os.environ.get('SIGNING_KEY'))
 
 if len(sys.argv) != 2:
-    print("Error: One command-line argument is required.")
-    print("Usage: python exchange_get_transfer_by_id.py <transfer_id>")
-    sys.exit(1)
+    exit('Usage: python exchange_get_transfer_by_id.py <transfer_id>')
 
 transfer_id = sys.argv[1]
 

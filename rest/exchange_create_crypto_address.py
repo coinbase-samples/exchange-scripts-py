@@ -20,9 +20,7 @@ PASSPHRASE = str(os.environ.get('PASSPHRASE'))
 SECRET_KEY = str(os.environ.get('SIGNING_KEY'))
 
 if len(sys.argv) != 2:
-    print("Error: One command-line argument is required.")
-    print("Usage: python exchange_create_crypto_address.py <account_id>")
-    sys.exit(1)
+    exit('Usage: python exchange_create_crypto_address.py <account_id>')
 
 account_id = sys.argv[1]
 # If generating an exchange address, account_id should be an asset name, e.g. BTC

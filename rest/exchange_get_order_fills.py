@@ -20,15 +20,12 @@ PASSPHRASE = str(os.environ.get('PASSPHRASE'))
 SECRET_KEY = str(os.environ.get('SIGNING_KEY'))
 
 if len(sys.argv) != 3:
-    print("Error: Two command-line arguments are required.")
-    print("Usage: python exchange_get_order_fills.py <product_id|order_id> <id_value>")
-    sys.exit(1)
+    exit('Usage: python exchange_get_order_fills.py <product_id|order_id> <id_value>')
 
 arg_type, id_value = sys.argv[1], sys.argv[2]
 
 if arg_type not in ('product_id', 'order_id'):
-    print("Error: The first argument must be 'product_id' or 'order_id'.")
-    sys.exit(1)
+    exit('Error: The first argument must be product_id or order_id.')
 
 query_id = f'?{arg_type}={id_value}'
 url = f'https://api.exchange.coinbase.com/fills{query_id}'

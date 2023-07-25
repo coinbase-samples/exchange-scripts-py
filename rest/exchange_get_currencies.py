@@ -19,7 +19,7 @@ API_KEY = str(os.environ.get('ACCESS_KEY'))
 PASSPHRASE = str(os.environ.get('PASSPHRASE'))
 SECRET_KEY = str(os.environ.get('SIGNING_KEY'))
 
-url = f'https://api.exchange.coinbase.com/currencies'
+url = 'https://api.exchange.coinbase.com/currencies'
 
 timestamp = str(int(time.time()))
 method = 'GET'

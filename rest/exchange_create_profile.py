@@ -19,12 +19,10 @@ API_KEY = str(os.environ.get('ACCESS_KEY'))
 PASSPHRASE = str(os.environ.get('PASSPHRASE'))
 SECRET_KEY = str(os.environ.get('SIGNING_KEY'))
 
-url = f'https://api.exchange.coinbase.com/profiles'
+url = 'https://api.exchange.coinbase.com/profiles'
 
 if len(sys.argv) != 2:
-    print("Error: One command-line argument is required.")
-    print("Usage: python exchange_create_profile.py <profile_name>")
-    sys.exit(1)
+    exit('Usage: python exchange_create_profile.py <profile_name>')
 
 profile_name = sys.argv[1]
 
