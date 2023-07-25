@@ -25,10 +25,13 @@ url = 'https://api.exchange.coinbase.com/withdrawals/crypto'
 timestamp = str(int(time.time()))
 method = 'POST'
 
-amount = '1'
-currency = 'USDC'
-crypto_address = 'crypto_address'
-network = 'ETH'
+if len(sys.argv) != 4:
+    exit("Usage: python exchange_create_withdrawal.py <amount> <currency> <crypto_address>")
+
+amount, currency, crypto_address = sys.argv[1], sys.argv[2], sys.argv[3]
+
+timestamp = str(int(time.time()))
+method = 'POST'
 
 url_path = urlparse(url).path
 
@@ -37,7 +40,6 @@ payload = {
    'amount': amount,
    'crypto_address': crypto_address,
    'currency': currency,
-   'network': network,
 }
 
 message = timestamp + method + url_path + json.dumps(payload)
