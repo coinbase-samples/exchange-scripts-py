@@ -33,17 +33,17 @@ async def generate_signature():
         message.encode('utf-8'),
         digestmod=hashlib.sha256).digest()
     signature_b64 = base64.b64encode(signature).decode().rstrip('\n')
-    return API_KEY, SECRET_KEY, PASSPHRASE, signature_b64, timestamp
+    return signature_b64, timestamp
 
 
 async def websocket_listener():
-    api_key, api_secret, passphrase, signature_b64, timestamp = await generate_signature()
+    signature_b64, timestamp = await generate_signature()
     subscribe_message = json.dumps({
         'type': 'subscribe',
         'channels': [{'name': channel, 'product_ids': [product_ids]}],
         'signature': signature_b64,
-        'key': api_key,
-        'passphrase': passphrase,
+        'key': API_KEY,
+        'passphrase': PASSPHRASE,
         'timestamp': timestamp
     })
 
