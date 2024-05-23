@@ -12,16 +12,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import json, hmac, hashlib, time, requests, base64, os, sys
+import json, hmac, hashlib, time, requests, base64, os, sys, uuid
 from urllib.parse import urlparse
 
-API_KEY = str(os.environ.get('ACCESS_KEY'))
+API_KEY = str(os.environ.get('API_KEY'))
 PASSPHRASE = str(os.environ.get('PASSPHRASE'))
-SECRET_KEY = str(os.environ.get('SIGNING_KEY'))
+SECRET_KEY = str(os.environ.get('SECRET_KEY'))
 
 url = 'https://api.exchange.coinbase.com/orders'
 
 timestamp = str(int(time.time()))
+idempotency_key = str(uuid.uuid4())
 method = 'POST'
 
 url_path = urlparse(url).path
@@ -29,10 +30,11 @@ url_path = urlparse(url).path
 payload = {
    'type': 'limit',
    'side': 'buy',
-   'product_id': 'BTC-USD',
-   'size': '0.01',
+   'product_id': 'ETH-USD',
+   'client_oid': idempotency_key,
+   'size': '0.001',
    'time_in_force': 'GTC',
-   'price': '20000'
+   'price': '2000'
 }
 
 message = timestamp + method + url_path + json.dumps(payload)

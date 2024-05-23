@@ -15,9 +15,9 @@
 import json, hmac, hashlib, time, requests, base64, os
 from urllib.parse import urlparse
 
-API_KEY = str(os.environ.get('ACCESS_KEY'))
+API_KEY = str(os.environ.get('API_KEY'))
 PASSPHRASE = str(os.environ.get('PASSPHRASE'))
-SECRET_KEY = str(os.environ.get('SIGNING_KEY'))
+SECRET_KEY = str(os.environ.get('SECRET_KEY'))
 
 url = 'https://api.exchange.coinbase.com/profiles'
 
