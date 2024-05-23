@@ -24,9 +24,9 @@ To fill these values, you will need to generate an API key with trading and read
 
 ```bash
 
-export ACCESS_KEY=ACCESSKEYHERE
+export API_KEY=ACCESSKEYHERE
 export PASSPHRASE=PASSPHRASEHERE
-export SIGNING_KEY=SIGNING_KEYHERE
+export SECRET_KEY=SECRET_KEYHERE
 ```
 
 There is also the usage of your Profile ID for several endpoints. This ID (which is API key-specific) can be retrieved from the [Get Profiles](https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles) endpoint, which is called with the included script `exchange_get_profiles.py`. Once you have retrieved your profile ID, you can add it as an environment variable with the following command:

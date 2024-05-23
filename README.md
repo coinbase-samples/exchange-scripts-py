@@ -20,13 +20,13 @@ pip install -r requirements.txt
 
 Additionally, these scripts make use of environment variables where applicable. Please note that only the first three values noted below are needed for REST APIs. The remainder are requirements for FIX. 
 
-To fill these values, you will need to generate an API key with trading and reading functionality and also retrieve your portfolio ID, which is provided in the response of [Get Products](https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles). Finally, your SVC_ACCOUNTID is identical to your ACCESS_KEY. Populate the below and run the following to declare these variables:
+To fill these values, you will need to generate an API key with trading and reading functionality and also retrieve your portfolio ID, which is provided in the response of [Get Products](https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles). Finally, your SVC_ACCOUNTID is identical to your API_KEY. Populate the below and run the following to declare these variables:
 
 ```bash
 
-export ACCESS_KEY=ACCESSKEYHERE
+export API_KEY=ACCESSKEYHERE
 export PASSPHRASE=PASSPHRASEHERE
-export SIGNING_KEY=SIGNING_KEYHERE
+export SECRET_KEY=SECRET_KEYHERE
 export PORTFOLIO_ID=PORTFOLIO_IDHERE
 export SVC_ACCOUNTID=SVC_ACCOUNTIDHERE
 export FIX_VERSION=FIX.4.2

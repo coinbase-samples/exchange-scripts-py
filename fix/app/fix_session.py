@@ -111,8 +111,8 @@ class Application(fix.Application):
     config = configparser.RawConfigParser()
 
     PASSPHRASE = str(os.environ.get('PASSPHRASE'))
-    API_KEY = str(os.environ.get('ACCESS_KEY'))
-    API_SECRET = str(os.environ.get('SIGNING_KEY'))
+    API_KEY = str(os.environ.get('API_KEY'))
+    API_SECRET = str(os.environ.get('SECRET_KEY'))
     PORTFOLIO = str(os.environ.get('PORTFOLIO_ID'))
 
     def __init__(self):
