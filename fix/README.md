@@ -18,17 +18,17 @@ You will need to install two dependencies for this to operate: quickfix and cert
 pip install -r requirements.txt
 ```
 
-We also want to store and grab variables to ensure connectivity to Exchange via FIX. To fill these values completely, you will need to generate an API key with trading functionality and also retrieve your portfolio ID, which is provided in the response of [Get Products](https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles). Finally, your SVC_ACCOUNTID is identical to your API_KEY.  Populate the below and run the following to declare these variables:
+We also want to store and grab variables to ensure connectivity to Exchange via FIX. To fill these values completely, you will need to generate an API key with trading functionality and also retrieve your portfolio ID, which is provided in the response of [Get Profiles](https://docs.cdp.coinbase.com/exchange/reference/exchangerestapi_getprofiles). Finally, your SVC_ACCOUNTID is identical to your API_KEY.  Populate the below and run the following to declare these variables:
 
 ```bash
 
-export API_KEY=ACCESSKEYHERE
-export PASSPHRASE=PASSPHRASEHERE
-export SECRET_KEY=SECRET_KEYHERE
-export PORTFOLIO_ID=PORTFOLIO_IDHERE
-export SVC_ACCOUNTID=SVC_ACCOUNTIDHERE
+export API_KEY=API_KEY_HERE
+export PASSPHRASE=PASSPHRASE_HERE
+export SECRET_KEY=SECRET_KEY_HERE
+export PORTFOLIO_ID=PORTFOLIO_ID_HERE
+export SVC_ACCOUNTID=SVC_ACCOUNTID_HERE
 export FIX_VERSION=FIX.4.2
-export TARGET_COMP_ID=COIN
+export TARGET_COMP_ID=Coinbase
 ```
 
 ## 3. Running the application

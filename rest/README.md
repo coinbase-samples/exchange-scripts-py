@@ -1,6 +1,6 @@
 # Exchange API REST Scripts
 
-This repository provides examples of common [REST API endpoints](https://docs.cloud.coinbase.com/exchange/reference) to use with Coinbase Exchange.
+This repository provides examples of common [REST API endpoints](https://docs.cdp.coinbase.com/exchange/reference) to use with Coinbase Exchange.
 # Getting started
 
 ## 1. Gaining access
@@ -29,7 +29,7 @@ export PASSPHRASE=PASSPHRASEHERE
 export SECRET_KEY=SECRET_KEYHERE
 ```
 
-There is also the usage of your Profile ID for several endpoints. This ID (which is API key-specific) can be retrieved from the [Get Profiles](https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles) endpoint, which is called with the included script `exchange_get_profiles.py`. Once you have retrieved your profile ID, you can add it as an environment variable with the following command:
+There is also the usage of your Profile ID for several endpoints. This ID (which is API key-specific) can be retrieved from the [Get Profiles](https://docs.cdp.coinbase.com/exchange/reference/exchangerestapi_getprofiles) endpoint, which is called with the included script `exchange_get_profiles.py`. Once you have retrieved your profile ID, you can add it as an environment variable with the following command:
 ```
 export PROFILE_ID=PROFILE_IDHERE
 ```
