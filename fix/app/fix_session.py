@@ -165,7 +165,7 @@ class Application(fix.Application):
 
             logfix.info('(Admin) S >> %s' % format_message(message))
         else:
-            logfix.info('Non-Logon administrative message')
+            return
 
     def fromAdmin(self, message, sessionID):
         """Function called for all inbound Administrative Messages"""
