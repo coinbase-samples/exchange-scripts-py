@@ -160,8 +160,6 @@ class Application(fix.Application):
             message.setField(rawDataLength)
             message.setField(fix.StringField(field_rawdata, rawData))
             message.setField(fix.StringField(field_accesskey, self.API_KEY))
-            message.setField(fix.StringField(field_cancelordersondisconnect, "Y"))
-            message.setField(fix.StringField(field_dropcopyflag, "N"))
 
             logfix.info('(Admin) S >> %s' % format_message(message))
         else:

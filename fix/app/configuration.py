@@ -37,7 +37,7 @@ class Configuration:
             'ReconnectInterval':'10',
             'ValidateUserDefinedFields':'N',
             'CancelOnDisconnect':'N',
-            'CancelOrdersOnDisconnect':'N',
+            'CancelOrdersOnDisconnect':'Y',
             'ValidateIncomingMessage':'Y',
             'ResetOnLogon':'Y',
             'ResetOnLogout':'N',
