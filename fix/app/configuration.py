@@ -20,6 +20,8 @@ class Configuration:
     BEGIN_STRING = str(os.environ.get('FIX_VERSION'))
     SENDER_COMP_ID = str(os.environ.get('SVC_ACCOUNTID'))
     TARGET_COMP_ID = str(os.environ.get('TARGET_COMP_ID'))
+    APPL_VER_ID = str(os.environ.get('DEFAULT_APPL_VER_ID'))
+    USERNAME = str(os.environ.get('FIX_USERNAME'))
     CLIENT_CERTIFICATE_KEY_FILE = str(certifi.where())
 
     def __init__(self):
@@ -35,26 +37,30 @@ class Configuration:
             'ReconnectInterval':'10',
             'ValidateUserDefinedFields':'N',
             'CancelOnDisconnect':'N',
-            'CancelOrdersOnDisconnect':'N',
+            'CancelOrdersOnDisconnect':'Y',
             'ValidateIncomingMessage':'Y',
             'ResetOnLogon':'Y',
             'ResetOnLogout':'N',
             'ResetOnDisconnect':'Y',
             'ClientCertificateKeyFile': self.CLIENT_CERTIFICATE_KEY_FILE,
             'SSLEnable':'Y',
+            'Username': self.USERNAME,
             'SSLProtocols':'Tls12',
-            'SocketConnectPort':'4198'
+            'SocketConnectPort':'6121'
         }
 
         self.config['SESSION'] = {
             'BeginString': self.BEGIN_STRING,
+            'DefaultApplVerID': self.APPL_VER_ID,
             'SenderCompID': self.SENDER_COMP_ID,
             'TargetCompID': self.TARGET_COMP_ID,
             'HeartBtInt': '30',
             # To use stunnel, set SocketConnectHost: 127.0.0.1
-            'SocketConnectHost': "fix.exchange.coinbase.com",
-            'FileStorePath': './.sessions/'
+            'SocketConnectHost': "fix-ord.exchange.coinbase.com",
+            'FileStorePath': './.sessions/',
+            'Username': self.USERNAME
         }
 
         with open('example.cfg', 'w') as configfile:
             self.config.write(configfile)
+

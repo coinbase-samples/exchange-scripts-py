@@ -143,19 +143,25 @@ class Application(fix.Application):
 
     def toAdmin(self, message, sessionID):
         """Function called for all outbound Administrative Messages"""
-        if message.getHeader().getField(field_msgtype) == msgtype_logon:
+        msgType = fix.MsgType()
+        message.getHeader().getField(msgType)
+        if msgType.getValue() == fix.MsgType_Logon:
+            username = fix.StringField(field_username, os.environ.get('FIX_USERNAME'))
+            message.setField(username)
+            password = fix.StringField(field_password, os.environ.get('PASSPHRASE'))
+            message.setField(password)
+
             rawData = self.sign(message.getHeader().getField(field_sendingtime),
                                 message.getHeader().getField(field_msgtype),
                                 message.getHeader().getField(field_msgseqnum), self.API_KEY,
                                 message.getHeader().getField(field_targetcompid),
                                 self.PASSPHRASE)
-            message.setField(fix.StringField(field_password, self.PASSPHRASE))
+            rawDataLength = fix.IntField(95, len(rawData))
+            message.setField(rawDataLength)
             message.setField(fix.StringField(field_rawdata, rawData))
             message.setField(fix.StringField(field_accesskey, self.API_KEY))
+
             logfix.info('(Admin) S >> %s' % format_message(message))
-            message.setField(fix.StringField(8013, "N"))
-            message.setField(fix.StringField(9406, "N"))
-            return
         else:
             return
 

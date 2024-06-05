@@ -49,6 +49,7 @@ field_return_quantity = 38
 field_side = 54
 field_productid = 55
 
+field_username = 553
 field_password = 554
 field_rawdata = 96
 field_accesskey = 9407
@@ -67,3 +68,6 @@ tag_new_order = '20=0'
 tag_text = '58='
 
 delimiter = '\x01'
+
+field_cancelordersondisconnect = 8013
+field_dropcopyflag = 9406
