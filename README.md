@@ -1,6 +1,6 @@
 # Exchange API Scripts
 
-This repository provides Python examples of the Coinbase Exchange Public APIs. Currently, only FIX is supported; however, REST will be added during Summer 2023. 
+This repository provides Python examples of the Coinbase Exchange Public APIs.
 # Getting started
 
 ## 1. Gaining access
@@ -29,13 +29,14 @@ export PASSPHRASE=PASSPHRASE_HERE
 export SECRET_KEY=SECRET_KEY_HERE
 export PORTFOLIO_ID=PORTFOLIO_ID_HERE
 export SVC_ACCOUNTID=SVC_ACCOUNT_ID_HERE
-export FIX_VERSION=FIX.4.2
+export FIX_VERSION=FIXT.1.1
+export DEFAULT_APPL_VER_ID=9
 export TARGET_COMP_ID=Coinbase
 ```
 
 ## 3. Running scripts
 
-A detailed [README.md](https://github.com/coinbase-samples/exchange-scripts-py/blob/jc-dev/fix/README.md) is provided inside the fix repository. For REST, scripts are entirely standalone and do not require any main application to access. You can run them simply by running a command like the following:
+For REST, scripts are entirely standalone and do not require any main application to access. You can run them simply by running a command like the following:
 ```
 python script_name_here.py
 ```
