@@ -1,4 +1,4 @@
-# Copyright 2023-present Coinbase Global, Inc.
+# Copyright 2024-present Coinbase Global, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -20,11 +20,11 @@ PASSPHRASE = str(os.environ.get('PASSPHRASE'))
 SECRET_KEY = str(os.environ.get('SECRET_KEY'))
 
 if len(sys.argv) != 2:
-    exit('Usage: python exchange_get_transfer_by_id.py <transfer_id>')
+    exit('Usage: python exchange_get_account_holds.py <account_id>')
 
-transfer_id = sys.argv[1]
+account_id = sys.argv[1]
 
-url = f'https://api.exchange.coinbase.com/transfers/{transfer_id}'
+url = f'https://api.exchange.coinbase.com/accounts/{account_id}/holds'
 
 timestamp = str(int(time.time()))
 method = 'GET'
