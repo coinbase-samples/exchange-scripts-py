@@ -12,13 +12,20 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import json, hmac, hashlib, time, requests, base64, os
+import json, hmac, hashlib, time, requests, base64, os, sys
 import uuid
 from urllib.parse import urlparse
 
 API_KEY = str(os.environ.get('API_KEY'))
 PASSPHRASE = str(os.environ.get('PASSPHRASE'))
 SECRET_KEY = str(os.environ.get('SECRET_KEY'))
+
+if len(sys.argv) != 4:
+    exit('Usage: python exchange_create_travel_rule_entry.py <address> <orig_name> <orig_country>')
+
+address = sys.argv[1]
+orig_name = sys.argv[2]
+orig_country = sys.argv[3]  # ISO 3166-1 alpha-2
 
 url = 'https://api.exchange.coinbase.com/travel-rules'
 
@@ -28,14 +35,10 @@ method = 'POST'
 
 url_path = urlparse(url).path
 
-address = '0x000000000000000000000000000000000000dEaD'
-originator_name = 'originator_name'
-originator_country = 'GB'  # ISO 3166-1 alpha-2
-
 payload = {
    'address': address,
-   'originator_name': originator_name,
-   'originator_country': originator_country,
+   'originator_name': orig_name,
+   'originator_country': orig_country,
 }
 
 message = timestamp + method + url_path + json.dumps(payload)

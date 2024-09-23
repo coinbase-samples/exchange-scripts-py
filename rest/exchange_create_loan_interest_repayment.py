@@ -12,13 +12,21 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import json, hmac, hashlib, time, requests, base64, os
+import json, hmac, hashlib, time, requests, base64, os, sys
 import uuid
 from urllib.parse import urlparse
 
 API_KEY = str(os.environ.get('API_KEY'))
 PASSPHRASE = str(os.environ.get('PASSPHRASE'))
 SECRET_KEY = str(os.environ.get('SECRET_KEY'))
+
+if len(sys.argv) != 4:
+    exit('Usage: python exchange_create_loan_interest_repayment.py <from_profile_id> <currency> <native_amount>')
+
+from_profile_id = sys.argv[1]
+currency = sys.argv[2]
+native_amount = sys.argv[3]
+
 
 url = 'https://api.exchange.coinbase.com/loans/repay-interest'
 
@@ -30,9 +38,9 @@ url_path = urlparse(url).path
 
 payload = {
    'idem': idem,
-   'from_profile_id': 'from_profile_id',
-   'currency': 'currency',
-   'native_amount': 'native_amount'
+   'from_profile_id': from_profile_id,
+   'currency': currency,
+   'native_amount': native_amount
 }
 
 message = timestamp + method + url_path + json.dumps(payload)
