@@ -28,7 +28,9 @@ method = 'POST'
 if len(sys.argv) != 4:
     exit("Usage: python exchange_create_withdrawal.py <amount> <currency> <payment_method_id>")
 
-amount, currency, payment_method_id = sys.argv[1], sys.argv[2], sys.argv[3]
+amount = sys.argv[1]
+currency = sys.argv[2]
+payment_method_id = sys.argv[3]
 
 timestamp = str(int(time.time()))
 method = 'POST'

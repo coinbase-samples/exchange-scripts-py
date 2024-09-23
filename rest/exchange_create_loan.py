@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import json, hmac, hashlib, time, requests, base64, os
+import json, hmac, hashlib, time, requests, base64, os, uuid
 from urllib.parse import urlparse
 
 API_KEY = str(os.environ.get('API_KEY'))
@@ -25,15 +25,22 @@ url = 'https://api.exchange.coinbase.com/loans/open'
 timestamp = str(int(time.time()))
 method = 'POST'
 
+loan_id = str(uuid.uuid4())
+currency = 'BTC'
+native_amount = '1'
+interest_rate = '0.1'
+term_start_date = '2024-09-01T00:00:00Z'
+term_end_date = '2024-11-22T00:00:00Z'
+
 url_path = urlparse(url).path
 
 payload = {
-   'loan_id': 'loan_id',
-   'currency': 'currency',
-   'native_amount': 'native_amount',
-   'interest_rate': 'interest_rate',
-   'term_start_date': 'term_start_date',
-   'term_end_date': 'term_end_date',
+   'loan_id': loan_id,
+   'currency': currency,
+   'native_amount': native_amount,
+   'interest_rate': interest_rate,
+   'term_start_date': term_start_date,
+   'term_end_date': term_end_date,
    'profile_id': PROFILE_ID
 }
 

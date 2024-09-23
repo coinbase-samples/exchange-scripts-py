@@ -33,7 +33,7 @@ url_path = urlparse(url).path
 
 payload = {
    'settlement_preference': 'USD',
-   'user_id': 'user_id'
+   'user_id': user_id
 }
 
 message = timestamp + method + url_path + json.dumps(payload)

@@ -28,10 +28,14 @@ method = 'POST'
 
 url_path = urlparse(url).path
 
+address = '0x000000000000000000000000000000000000dEaD'
+originator_name = 'originator_name'
+originator_country = 'GB'  # ISO 3166-1 alpha-2
+
 payload = {
-   'address': 'address',
-   'originator_name': 'originator_name',
-   'originator_country': 'originator_country',
+   'address': address,
+   'originator_name': originator_name,
+   'originator_country': originator_country,
 }
 
 message = timestamp + method + url_path + json.dumps(payload)

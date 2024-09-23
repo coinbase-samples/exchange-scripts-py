@@ -19,6 +19,14 @@ API_KEY = str(os.environ.get('API_KEY'))
 PASSPHRASE = str(os.environ.get('PASSPHRASE'))
 SECRET_KEY = str(os.environ.get('SECRET_KEY'))
 
+if len(sys.argv) != 5:
+    exit('Usage: python exchange_transfer_funds_between_profiles.py <transfer_from> <transfer_to> <currency> <amount>')
+
+transfer_from = sys.argv[1]
+transfer_to = sys.argv[2]
+currency = sys.argv[3]
+amount = sys.argv[4]
+
 url = 'https://api.exchange.coinbase.com/profiles/transfer'
 
 timestamp = str(int(time.time()))
@@ -27,10 +35,10 @@ method = 'POST'
 url_path = urlparse(url).path
 
 payload = {
-   'from': 'from',
-   'to': 'to',
-   'currency': 'currency',
-   'amount': 'amount'
+   'from': transfer_from,
+   'to': transfer_to,
+   'currency': currency,
+   'amount': amount
 }
 
 message = timestamp + method + url_path + json.dumps(payload)

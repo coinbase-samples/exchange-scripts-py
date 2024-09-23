@@ -21,6 +21,7 @@ SECRET_KEY = str(os.environ.get('SECRET_KEY'))
 
 url = 'https://api.exchange.coinbase.com/reports'
 
+# accepted report types: account, balance, fills, otc-fills, rfq-fills, tax-invoice, 1099k-transaction-history
 report_type = "account"
 
 timestamp = str(int(time.time()))
