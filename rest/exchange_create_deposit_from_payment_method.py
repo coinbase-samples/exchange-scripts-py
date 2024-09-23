@@ -1,4 +1,4 @@
-# Copyright 2023-present Coinbase Global, Inc.
+# Copyright 2024-present Coinbase Global, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -20,18 +20,22 @@ PASSPHRASE = str(os.environ.get('PASSPHRASE'))
 SECRET_KEY = str(os.environ.get('SECRET_KEY'))
 PROFILE_ID = str(os.environ.get('PROFILE_ID'))
 
-url = 'https://api.exchange.coinbase.com/conversions'
+url = 'https://api.exchange.coinbase.com/deposits/payment-method'
 
 timestamp = str(int(time.time()))
 method = 'POST'
+
+amount = 'amount'
+payment_method_id = 'payment_method_id'
+currency = 'currency'
 
 url_path = urlparse(url).path
 
 payload = {
    'profile_id': PROFILE_ID,
-   'from': 'USDC',
-   'to': 'USD',
-   'amount': '1',
+   'amount': amount,
+   'payment_method_id': payment_method_id,
+   'currency': currency,
 }
 
 message = timestamp + method + url_path + json.dumps(payload)

@@ -1,4 +1,4 @@
-# Copyright 2023-present Coinbase Global, Inc.
+# Copyright 2024-present Coinbase Global, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,15 +12,21 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import json, hmac, hashlib, time, requests, base64, os
+import json, hmac, hashlib, time, requests, base64, os, sys
 from urllib.parse import urlparse
 
 API_KEY = str(os.environ.get('API_KEY'))
 PASSPHRASE = str(os.environ.get('PASSPHRASE'))
 SECRET_KEY = str(os.environ.get('SECRET_KEY'))
-PROFILE_ID = str(os.environ.get('PROFILE_ID'))
 
-url = 'https://api.exchange.coinbase.com/conversions'
+url = 'https://api.exchange.coinbase.com/wrapped-assets/stake-wrap'
+
+if len(sys.argv) != 4:
+    exit('Usage: python exchange_create_stake_wrap.py <from_currency> <to_currency> <amount>')
+
+from_currency = sys.argv[1]
+to_currency = sys.argv[1]
+amount = sys.argv[1]
 
 timestamp = str(int(time.time()))
 method = 'POST'
@@ -28,10 +34,9 @@ method = 'POST'
 url_path = urlparse(url).path
 
 payload = {
-   'profile_id': PROFILE_ID,
-   'from': 'USDC',
-   'to': 'USD',
-   'amount': '1',
+   'from_currency': from_currency,
+   'to_currency': to_currency,
+   'amount': amount,
 }
 
 message = timestamp + method + url_path + json.dumps(payload)

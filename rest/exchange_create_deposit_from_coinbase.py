@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import json, hmac, hashlib, time, requests, base64, os, sys
+import json, hmac, hashlib, time, requests, base64, os
 from urllib.parse import urlparse
 
 API_KEY = str(os.environ.get('API_KEY'))

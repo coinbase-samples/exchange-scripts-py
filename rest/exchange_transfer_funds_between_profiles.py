@@ -1,4 +1,4 @@
-# Copyright 2023-present Coinbase Global, Inc.
+# Copyright 2024-present Coinbase Global, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,15 +12,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import json, hmac, hashlib, time, requests, base64, os
+import json, hmac, hashlib, time, requests, base64, os, sys
 from urllib.parse import urlparse
 
 API_KEY = str(os.environ.get('API_KEY'))
 PASSPHRASE = str(os.environ.get('PASSPHRASE'))
 SECRET_KEY = str(os.environ.get('SECRET_KEY'))
-PROFILE_ID = str(os.environ.get('PROFILE_ID'))
 
-url = 'https://api.exchange.coinbase.com/conversions'
+if len(sys.argv) != 5:
+    exit('Usage: python exchange_transfer_funds_between_profiles.py <transfer_from> <transfer_to> <currency> <amount>')
+
+transfer_from = sys.argv[1]
+transfer_to = sys.argv[2]
+currency = sys.argv[3]
+amount = sys.argv[4]
+
+url = 'https://api.exchange.coinbase.com/profiles/transfer'
 
 timestamp = str(int(time.time()))
 method = 'POST'
@@ -28,10 +35,10 @@ method = 'POST'
 url_path = urlparse(url).path
 
 payload = {
-   'profile_id': PROFILE_ID,
-   'from': 'USDC',
-   'to': 'USD',
-   'amount': '1',
+   'from': transfer_from,
+   'to': transfer_to,
+   'currency': currency,
+   'amount': amount
 }
 
 message = timestamp + method + url_path + json.dumps(payload)

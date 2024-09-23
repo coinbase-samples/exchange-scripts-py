@@ -1,4 +1,4 @@
-# Copyright 2023-present Coinbase Global, Inc.
+# Copyright 2024-present Coinbase Global, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,26 +12,37 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import json, hmac, hashlib, time, requests, base64, os
+import json, hmac, hashlib, time, requests, base64, os, sys
+import uuid
 from urllib.parse import urlparse
 
 API_KEY = str(os.environ.get('API_KEY'))
 PASSPHRASE = str(os.environ.get('PASSPHRASE'))
 SECRET_KEY = str(os.environ.get('SECRET_KEY'))
-PROFILE_ID = str(os.environ.get('PROFILE_ID'))
 
-url = 'https://api.exchange.coinbase.com/conversions'
+if len(sys.argv) != 5:
+    exit('Usage: python exchange_create_loan_principal_repayment.py'
+         ' <loan_id> <from_profile_id> <currency> <native_amount>')
+
+loan_id = sys.argv[1]
+from_profile_id = sys.argv[2]
+currency = sys.argv[3]
+native_amount = sys.argv[4]
+
+url = 'https://api.exchange.coinbase.com/loans/repay-principal'
 
 timestamp = str(int(time.time()))
+idem = str(uuid.uuid4())
 method = 'POST'
 
 url_path = urlparse(url).path
 
 payload = {
-   'profile_id': PROFILE_ID,
-   'from': 'USDC',
-   'to': 'USD',
-   'amount': '1',
+   'loan_id': loan_id,
+   'idem': idem,
+   'from_profile_id': from_profile_id,
+   'currency': currency,
+   'native_amount': native_amount
 }
 
 message = timestamp + method + url_path + json.dumps(payload)

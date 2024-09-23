@@ -1,4 +1,4 @@
-# Copyright 2023-present Coinbase Global, Inc.
+# Copyright 2024-present Coinbase Global, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,15 +12,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import json, hmac, hashlib, time, requests, base64, os
+import json, hmac, hashlib, time, requests, base64, os, sys
 from urllib.parse import urlparse
 
 API_KEY = str(os.environ.get('API_KEY'))
 PASSPHRASE = str(os.environ.get('PASSPHRASE'))
 SECRET_KEY = str(os.environ.get('SECRET_KEY'))
-PROFILE_ID = str(os.environ.get('PROFILE_ID'))
 
-url = 'https://api.exchange.coinbase.com/conversions'
+url = 'https://api.exchange.coinbase.com/reports'
+
+# accepted report types: account, balance, fills, otc-fills, rfq-fills, tax-invoice, 1099k-transaction-history
+report_type = "account"
 
 timestamp = str(int(time.time()))
 method = 'POST'
@@ -28,10 +30,7 @@ method = 'POST'
 url_path = urlparse(url).path
 
 payload = {
-   'profile_id': PROFILE_ID,
-   'from': 'USDC',
-   'to': 'USD',
-   'amount': '1',
+   'type': report_type,
 }
 
 message = timestamp + method + url_path + json.dumps(payload)

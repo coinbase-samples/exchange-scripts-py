@@ -1,4 +1,4 @@
-# Copyright 2023-present Coinbase Global, Inc.
+# Copyright 2024-present Coinbase Global, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -20,18 +20,16 @@ PASSPHRASE = str(os.environ.get('PASSPHRASE'))
 SECRET_KEY = str(os.environ.get('SECRET_KEY'))
 
 if len(sys.argv) != 2:
-    exit('Usage: python script.py <product_id>')
+    exit('Usage: python exchange_get_report.py <report_id>')
 
-product_id = sys.argv[1]
+report_id = sys.argv[1]
 
-query_id = '&product_id=' + product_id
-
-url = f'https://api.exchange.coinbase.com/orders?limit=100&status=open{query_id}'
+url = f'https://api.exchange.coinbase.com/reports/{report_id}'
 
 timestamp = str(int(time.time()))
 method = 'GET'
 
-url_path = f'{urlparse(url).path}?{urlparse(url).query}'
+url_path = f'{urlparse(url).path}{urlparse(url).query}'
 
 message = timestamp + method + url_path
 hmac_key = base64.b64decode(SECRET_KEY)
